@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- خلفية داكنة للرمز -->
+    <path
+        android:fillColor="#0f172a"
+        android:pathData="M0,0h108v108h-108z"/>
+
+    <!-- رقم 22 - الرقم الرئيسي -->
+    <path
+        android:fillColor="#0ea5e9"
+        android:pathData="M32,30 L32,78 L40,78 L40,50 L50,50 L50,78 L58,78 L58,30 L50,30 L50,42 L40,42 L40,30 Z"/>
+    
+    <!-- خط علوي - خط تحت 22 -->
+    <path
+        android:fillColor="#0ea5e9"
+        android:pathData="M25,24 L83,24 L83,28 L25,28 Z"/>
+    
+    <!-- خط سفلي -->
+    <path
+        android:fillColor="#0ea5e9"
+        android:pathData="M25,80 L83,80 L83,84 L25,84 Z"/>
+
+    <!-- نقاط بيانات متوهجة (زوايا) -->
+    <path
+        android:fillColor="#38bdf8"
+        android:pathData="M20,20 L24,20 L24,24 L20,24 Z"/>
+    <path
+        android:fillColor="#38bdf8"
+        android:pathData="M84,20 L88,20 L88,24 L84,24 Z"/>
+    <path
+        android:fillColor="#38bdf8"
+        android:pathData="M20,84 L24,84 L24,88 L20,88 Z"/>
+    <path
+        android:fillColor="#38bdf8"
+        android:pathData="M84,84 L88,84 L88,88 L84,88 Z"/>
+
+</vector>

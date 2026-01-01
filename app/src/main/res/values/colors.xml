@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- ألوان تطبيق SYSTEM 22 - ثيمة سيبرانك -->
+    
+    <!-- الألوان الأساسية -->
+    <color name="void_black">#050505</color>
+    <color name="slate_950">#020617</color>
+    <color name="slate_900">#0f172a</color>
+    <color name="slate_800">#1e293b</color>
+    <color name="slate_700">#334155</color>
+    
+    <!-- ألوان الهالة الجليدية (Ice Blue) -->
+    <color name="cold_blue">#0ea5e9</color>
+    <color name="cold_blue_dark">#0284c7</color>
+    <color name="cold_blue_light">#38bdf8</color>
+    <color name="ice_white">#e2e8f0</color>
+    
+    <!-- ألوان التحذير والخطر -->
+    <color name="danger_red">#ef4444</color>
+    <color name="danger_red_dark">#dc2626</color>
+    
+    <!-- ألوان النجاح -->
+    <color name="success_green">#22c55e</color>
+    
+    <!-- ألوان الخلفية -->
+    <color name="background_dark">#020617</color>
+    <color name="panel_background">#0f172a</color>
+    <color name="panel_translucent">#f00f172a99</color>
+    
+    <!-- ألوان النص -->
+    <color name="text_primary">#e2e8f0</color>
+    <color name="text_secondary">#94a3b8</color>
+    <color name="text_muted">#64748b</color>
+    
+    <!-- ألوان النظام -->
+    <color name="system_gray">#1e293b</color>
+    <color name="border_color">#1e293b</color>
+</resources>

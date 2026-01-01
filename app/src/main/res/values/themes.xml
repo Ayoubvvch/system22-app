@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- الموضوع الرئيسي للتطبيق -->
+    <style name="Theme.System22" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <!-- الألوان الأساسية -->
+        <item name="colorPrimary">@color/cold_blue</item>
+        <item name="colorPrimaryVariant">@color/cold_blue_dark</item>
+        <item name="colorOnPrimary">@color/void_black</item>
+
+        <!-- اللون الثانوي -->
+        <item name="colorSecondary">@color/cold_blue_light</item>
+        <item name="colorSecondaryVariant">@color/cold_blue</item>
+        <item name="colorOnSecondary">@color/void_black</item>
+
+        <!-- لون الخلفية -->
+        <item name="android:windowBackground">@color/background_dark</item>
+
+        <!-- ألوان شريط الحالة والتنقل -->
+        <item name="android:statusBarColor">@color/slate_950</item>
+        <item name="android:navigationBarColor">@color/slate_950</item>
+
+        <!-- تمكين النافذة الكاملة -->
+        <item name="android:windowLayoutInDisplayCutoutMode">shortEdges</item>
+    </style>
+
+    <!-- موضوع شاشة البداية (Splash Screen) -->
+    <style name="Theme.System22.Splash" parent="Theme.System22">
+        <item name="android:windowBackground">@drawable/splash_background</item>
+        <item name="android:statusBarColor">@color/slate_950</item>
+        <item name="android:navigationBarColor">@color/slate_950</item>
+    </style>
+
+</resources>
