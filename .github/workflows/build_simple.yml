@@ -1,0 +1,63 @@
+name: إنشاء APK - SYSTEM 22
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  packages: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Install Android SDK
+        run: |
+          mkdir -p /tmp/android-sdk
+          cd /tmp/android-sdk
+          wget -q https://dl.google.com/android/repository/commandlinetools-linux-11076708_latest.zip -O cmdline-tools.zip
+          unzip -q cmdline-tools.zip
+          mkdir -p cmdline-tools/latest
+          mv cmdline-tools/bin cmdline-tools/lib cmdline-tools/NOTICE.txt cmdline-tools/source.properties cmdline-tools/latest/ 2>/dev/null || true
+          yes | cmdline-tools/latest/bin/sdkmanager --licenses > /dev/null 2>&1
+          cmdline-tools/latest/bin/sdkmanager "platform-tools" "platforms;android-34" "build-tools;34.0.0" > /dev/null 2>&1
+          echo "ANDROID_HOME=/tmp/android-sdk" >> $GITHUB_ENV
+          echo "ANDROID_SDK_ROOT=/tmp/android-sdk" >> $GITHUB_ENV
+
+      - name: Build APK with detailed output
+        run: |
+          echo "=== Environment ==="
+          echo "ANDROID_HOME: $ANDROID_HOME"
+          echo "ANDROID_SDK_ROOT: $ANDROID_SDK_ROOT"
+          echo ""
+          
+          chmod +x gradlew
+          echo "sdk.dir=/tmp/android-sdk" >> local.properties
+          
+          echo "=== Running Gradle Tasks ==="
+          ./gradlew tasks --all 2>&1 | head -50
+          echo ""
+          
+          echo "=== Building APK ==="
+          ./gradlew assembleDebug --stacktrace 2>&1
+          
+          echo ""
+          echo "=== Checking Build Outputs ==="
+          ls -laR app/build/outputs/ 2>&1 || echo "No outputs found"
+          
+      - name: Upload APK
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: system22-debug.apk
+          path: app/build/outputs/apk/debug/
+          retention-days: 1
