@@ -48,27 +48,25 @@ jobs:
         run: |
           chmod +x gradlew
           echo "sdk.dir=$HOME/android-sdk" >> local.properties
+          echo "sdk.dir=$HOME/android-sdk" >> $GITHUB_ENV
 
-      - name: بناء التطبيق
-        run: ./gradlew assembleDebug --stacktrace 2>&1 | tee build.log || cat build.log
+      - name: بناء التطبيق (نسخة Debug)
+        run: |
+          echo "=== بدء البناء ===" 
+          ./gradlew clean assembleDebug --info 2>&1 | tee build.log
+          echo ""
+          echo "=== التحقق من ملفات APK ==="
+          find . -name "*.apk" -type f 2>/dev/null || echo "لم يتم العثور على APK"
+          ls -laR app/build/outputs/apk/ 2>/dev/null || echo "مجلد outputs غير موجود"
 
       - name: رفع ملف APK
         uses: actions/upload-artifact@v4
         with:
           name: system22-app.apk
-          path: app/build/outputs/apk/debug/app-debug.apk
+          path: app/build/outputs/apk/debug/
           retention-days: 7
 
       - name: عرض معلومات الملف
         run: |
-          echo "=== معلومات ملف APK ==="
-          ls -lh app/build/outputs/apk/debug/app-debug.apk 2>&1 || echo "البناء فشل. راجع السجلات أعلاه."
-          echo ""
-          echo "تم بناء التطبيق بنجاح!"
-
-      - name: عرض سجل البناء عند الفشل
-        if: failure()
-        run: |
-          echo "=== حدث خطأ أثناء البناء ==="
-          cat app/build/outputs/logs/*.log 2>/dev/null || echo "لا توجد سجلات"
-          cat build.log 2>/dev/null | tail -50 || echo "لا يوجد سجل بناء"
+          echo "=== ملفات APK الموجودة ==="
+          find app/build/outputs -name "*.apk" -exec ls -lh {} \; 2>/dev/null || echo "لم يتم إنشاء APK"
